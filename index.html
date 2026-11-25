@@ -204,6 +204,46 @@ h3.cat{margin:28px 0 8px}
 .reference-body li:last-child{margin-bottom:0}
 .reference-status{display:block;color:var(--text2);font-size:13px;margin-top:2px}
 @media(max-width:620px){.reference-body{grid-template-columns:1fr;gap:16px}.reference-body figure{max-width:220px;margin:0 auto 2px;width:100%}}
+.ui-pattern-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.ui-pattern{min-width:0;background:var(--card);border-radius:12px;padding:16px;border:.5px solid var(--sep)}
+.ui-pattern header{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.ui-pattern h3{margin:0;font-size:17px}.ui-pattern header>a{font-size:13px;white-space:nowrap}
+.ui-pattern>ul{font-size:15px;margin:12px 0 0;padding-left:18px}.ui-pattern>ul li{margin:0}
+.p-demo{background:var(--bg);border-radius:9px;padding:12px;min-height:205px;font-size:13px;overflow:hidden}
+.p-demo button,.p-demo input{font:inherit;color:var(--text)}
+.p-demo button{cursor:pointer;background:var(--card);border:1px solid var(--sep);border-radius:6px;padding:6px 8px;min-height:30px}
+.p-demo button:disabled{opacity:.45;cursor:default}
+.p-demo button:focus-visible,.p-demo input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.p-demo button.selected,.p-demo button[aria-pressed=true]{border-color:var(--accent);color:var(--accent);background:var(--card)}
+.p-help{font-size:12px;color:var(--text2);margin:12px 0 0;line-height:1.4;min-height:30px}
+.p-flow{display:flex;align-items:center;justify-content:center;gap:4px;height:118px;padding:0}
+.p-node{position:relative;background:var(--card);border:1px solid var(--sep);border-radius:7px;min-width:57px;padding:18px 5px;text-align:center;font-size:12px}
+.p-demo .p-port{position:absolute;top:50%;transform:translateY(-50%);width:20px;min-height:28px;padding:0;border:0;background:transparent;border-radius:12px}
+.p-port:after{content:"";display:block;width:10px;height:10px;border:2px solid var(--accent);border-radius:50%;background:var(--card);margin:auto}
+.p-out{right:-13px}.p-in{left:-13px}.p-port.selected:after{background:var(--accent)}
+.p-wire{font-size:18px;color:var(--sep)}.p-wire.connected,.p-connected{color:var(--accent)}
+.p-graph{position:relative;height:124px}.p-graph svg{position:absolute;width:100%;height:120px;inset:0;stroke:var(--grey2);stroke-width:1.5;fill:none}
+.p-graph button{position:absolute;transform:translateX(-50%);padding:4px 6px;font-size:11px;border-radius:20px;min-height:28px}
+.p-graph:has(button:hover) svg,.p-graph:has(button:focus-visible) svg{stroke:var(--accent)}
+.p-note-preview{margin-top:4px}.p-canvas{position:relative;height:135px;border:1px dashed var(--sep);border-radius:6px;overflow:hidden}
+.p-demo .p-card{position:absolute;width:84px;min-height:36px;padding:8px;touch-action:none;user-select:none;cursor:grab}.p-demo .p-card:active{cursor:grabbing}
+.p-blocks{display:flex;flex-direction:column;gap:6px}.p-block{display:grid;grid-template-columns:12px 1fr 29px 29px;gap:4px;align-items:center;background:var(--card);border:1px solid var(--sep);padding:5px 6px;border-radius:5px}.p-block>span:first-child{color:var(--text2)}.p-block button{padding:3px;min-height:28px}
+.p-tabs{display:flex;gap:5px;margin-bottom:12px}.p-tabs button{flex:1}
+.p-mini-table{font-size:11px;margin:0;background:var(--card)}.p-mini-table th,.p-mini-table td{font-size:11px;padding:5px 6px;white-space:normal}
+.p-board{display:grid;grid-template-columns:1fr 1fr;gap:6px;min-height:91px}.p-board>div{font-size:11px;padding:6px;border:1px solid var(--sep);border-radius:5px}.p-board b{display:block;margin-bottom:6px;font-size:10px;color:var(--text2)}.p-board span{display:block;padding:4px;background:var(--card);margin-bottom:4px;border-radius:3px}
+.p-search-label{display:block;font-size:11px;color:var(--text2)}.p-search-label input{display:block;width:100%;padding:7px 9px;margin-top:4px;background:var(--card);border:1px solid var(--sep);border-radius:6px}
+.p-command-list{margin-top:8px;display:flex;flex-direction:column;gap:3px}.p-command-list button{text-align:left;display:flex;justify-content:space-between}.p-command-list button span{color:var(--text2)}
+.p-zoom-area{display:flex;gap:7px;align-items:center;height:130px}.p-topic{flex:1;min-width:0;padding:10px 4px!important;font-size:12px!important}.p-topic small{display:block;font-size:12px;margin-top:12px;line-height:1.5;color:var(--text2)}.p-zoom-area[data-focus] .p-topic:not(.selected){display:none}.p-zoom-area[data-focus] .p-topic.selected{min-height:108px}.p-reset{font-size:11px!important}
+.p-radial{width:100%;height:178px;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr 1fr;gap:5px;align-items:center;justify-items:center}
+.p-radial button{border-radius:20px;padding:7px 9px;font-size:11px}.p-north{grid-area:1/2}.p-west{grid-area:2/1}.p-radial output{grid-area:2/2;font-size:11px;color:var(--accent);text-align:center}.p-east{grid-area:2/3}.p-south{grid-area:3/2}
+.p-transcript{font-size:16px;line-height:2.1;padding:10px 0 20px}.p-demo [data-cut-word]{border-style:dashed;color:var(--accent)}.p-demo [data-cut-word][aria-pressed=true]{text-decoration:line-through;opacity:.5}
+.p-timeline{display:flex;gap:4px;height:34px;align-items:stretch}.p-timeline span{background:var(--accent);opacity:.65;border-radius:4px;flex:1}.p-timeline span:nth-child(2){background:var(--grey2);flex:.4}.p-timeline span:last-child{flex:2}
+.p-inspect{display:grid;grid-template-columns:1fr 100px;gap:10px;min-height:140px}.p-shapes{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}.p-demo .p-shape{width:48px;min-height:40px;padding:0}.p-demo .p-square{background:var(--accent);border-color:var(--accent)}.p-demo .p-circle{width:40px;height:40px;border-radius:50%;background:var(--grey2)}.p-demo .p-square.selected{background:var(--accent)}.p-demo .p-circle.selected{background:var(--grey2)}.p-demo .p-shape.selected{outline:2px solid var(--accent);outline-offset:3px}
+.p-properties{background:var(--card);padding:10px;border-left:1px solid var(--sep);display:flex;flex-direction:column;justify-content:center;gap:4px}.p-properties span{font-size:10px;color:var(--text2)}.p-properties b{font-size:12px;margin-bottom:5px;font-weight:500}
+.p-step-meta{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--text2)}.p-step-meta button{font-size:11px;padding:4px 7px}.p-step-question{font-size:15px;margin:14px 0 10px;font-weight:600}.p-step-choices{display:flex;flex-wrap:wrap;gap:6px}.p-step-choices button{flex:1;min-width:60px;font-size:12px}
+.p-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;min-height:142px;border:1px solid var(--sep);background:var(--card);border-radius:5px;overflow:hidden}.p-columns>div{border-right:1px solid var(--sep);padding:5px 3px}.p-columns>div:last-child{border:0}.p-columns button{display:block;width:100%;border:0;background:transparent;text-align:left;font-size:10px;padding:6px 3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.p-columns button.selected{background:var(--bg)}
+@media(max-width:700px){.ui-pattern-grid{grid-template-columns:1fr}.p-demo{min-height:205px}.p-flow{gap:4px}.p-node{min-width:57px}.p-graph button{font-size:12px}.p-columns button{font-size:12px}}
+
 </style></head>
 <body>
 <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="site-navigation" aria-expanded="false" aria-label="Inhaltsverzeichnis öffnen">Inhalt</button>
@@ -217,6 +257,7 @@ h3.cat{margin:28px 0 8px}
 <a href="#ki-angebote">Bestehende Angebote</a>
 <a href="#ki-erkenntnisse">Erkenntnisse</a>
 <a href="#ki-richtungen">Mögliche Richtungen</a>
+<a href="#ki-ui-muster">Digitale UI-Muster</a>
 <a href="#ki-kreativ">Kreative KI-Interfaces</a>
 <a href="#ki-unorthodox">Unorthodoxe Interfaces</a>
 <a href="#ki-test">Nächster Test</a>
@@ -727,6 +768,75 @@ h3.cat{margin:28px 0 8px}
 <p><b>Vorschlag für APE:</b> Zuerst Technikbegleitung und KI-Entdeckung prüfen; das Medium danach wählen.</p>
 </section>
 
+<section id="ki-ui-muster" class="ki-section">
+<h2>Digitale UI-Muster</h2>
+<p class="meta">12 praktische Interaktionsmuster · App-Referenzen · 25.11.2026</p>
+<p class="secondary">Kleine, bedienbare Schemata zeigen das Prinzip. Keine Originaloberflächen; die App-Funktionen sind anhand offizieller Quellen beschrieben.</p>
+<div class="ui-pattern-grid">
+<article class="ui-pattern" data-pattern="nodes">
+<header><h3>Node-Editor</h3><a href="https://docs.n8n.io/build/understand-workflows/workflow-components/connect-nodes-together.md">n8n ↗</a></header>
+<div class="p-demo"><div class="p-flow"><div class="p-node">Anliegen<button type="button" class="p-port p-out" data-node-out aria-label="Ausgang auswählen"></button></div><span class="p-wire" data-node-wire>→</span><div class="p-node"><button type="button" class="p-port p-in" data-node-in aria-label="Mit KI verbinden"></button>KI</div><span class="p-wire p-connected">→</span><div class="p-node">Antwort</div></div><p class="p-help" data-node-status>Ausgang rechts, dann Eingang links antippen.</p></div>
+<ul><li>Schritte verbinden; die Verbindungen bestimmen den Datenfluss.</li></ul>
+</article>
+<article class="ui-pattern" data-pattern="graph">
+<header><h3>Verlinkte Notizen</h3><a href="https://obsidian.md/help/plugins/graph">Obsidian ↗</a></header>
+<div class="p-demo"><div class="p-graph"><svg viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true"><path d="M150 54 58 98M150 54 243 98M150 54 150 12"/></svg><button type="button" style="left:50%;top:0" data-note="Nachrichten" data-preview="Nachrichten schreiben und beantworten.">Nachrichten</button><button type="button" class="selected" style="left:50%;top:42px" data-note="Handy" data-preview="Verknüpft mit WLAN, Fotos und Nachrichten.">Handy</button><button type="button" style="left:19%;top:84px" data-note="WLAN" data-preview="Verbindung, Passwort und Router.">WLAN</button><button type="button" style="left:81%;top:84px" data-note="Fotos" data-preview="Aufnehmen, wiederfinden und teilen.">Fotos</button></div><p class="p-help" data-note-preview>Handy: Verknüpft mit WLAN, Fotos und Nachrichten.</p></div>
+<ul><li>Bestehende Links erkunden und die passende Notiz öffnen.</li></ul>
+</article>
+<article class="ui-pattern" data-pattern="canvas">
+<header><h3>Räumliche Karten</h3><a href="https://wiki.heptabase.com/fundamental-elements">Heptabase ↗</a></header>
+<div class="p-demo"><div class="p-canvas"><button type="button" class="p-card" style="left:5%;top:12px" aria-label="Karte Frage verschieben">Frage</button><button type="button" class="p-card" style="left:50%;top:34px" aria-label="Karte Fundstück verschieben">Fundstück</button><button type="button" class="p-card" style="left:22%;top:94px" aria-label="Karte Idee verschieben">Idee</button></div><p class="p-help">Karten ziehen oder mit Pfeiltasten bewegen.</p></div>
+<ul><li>Inhalte frei platzieren; Nähe und Gruppen ordnen Gedanken.</li></ul>
+</article>
+<article class="ui-pattern" data-pattern="blocks">
+<header><h3>Block-Editor</h3><a href="https://www.notion.com/help/what-is-a-block">Notion ↗</a></header>
+<div class="p-demo"><div class="p-blocks"><div class="p-block"><span>⠿</span><span>Meine Frage</span><button type="button" data-block-up aria-label="Meine Frage nach oben">↑</button><button type="button" data-block-down aria-label="Meine Frage nach unten">↓</button></div><div class="p-block"><span>⠿</span><span>Die Erklärung</span><button type="button" data-block-up aria-label="Die Erklärung nach oben">↑</button><button type="button" data-block-down aria-label="Die Erklärung nach unten">↓</button></div><div class="p-block"><span>⠿</span><span>Nächste Schritte</span><button type="button" data-block-up aria-label="Nächste Schritte nach oben">↑</button><button type="button" data-block-down aria-label="Nächste Schritte nach unten">↓</button></div></div><p class="p-help">Die Pfeile ändern hier die Reihenfolge.</p></div>
+<ul><li>Ein Dokument besteht aus verschiebbaren Inhaltsbausteinen.</li></ul>
+</article>
+<article class="ui-pattern" data-pattern="views">
+<header><h3>Mehrere Datenansichten</h3><a href="https://support.airtable.com/articles/5189551686-getting-started-with-airtable-views">Airtable ↗</a></header>
+<div class="p-demo"><div class="p-tabs" aria-label="Datenansicht"><button type="button" data-data-view="table" aria-pressed="true">Tabelle</button><button type="button" data-data-view="board" aria-pressed="false">Board</button></div><div data-records></div><p class="p-help">Dieselben drei Aufgaben, eine andere Darstellung.</p></div>
+<ul><li>Zwischen Ansichten wechseln; die zugrunde liegenden Daten bleiben gleich.</li></ul>
+</article>
+<article class="ui-pattern" data-pattern="commands">
+<header><h3>Befehlspalette</h3><a href="https://manual.raycast.com/quickstart">Raycast ↗</a></header>
+<div class="p-demo"><label class="p-search-label">Aktion suchen<input type="search" data-command-search placeholder="z. B. lesen" autocomplete="off"></label><div class="p-command-list"><button type="button" data-command="Vorlesen">Vorlesen <span>↵</span></button><button type="button" data-command="Erklären">Erklären <span>↵</span></button><button type="button" data-command="Nachricht schreiben">Nachricht schreiben <span>↵</span></button></div><p class="p-help" data-command-status>Befehl suchen und auswählen.</p></div>
+<ul><li>Eine Tätigkeit suchen, statt ihren Platz im Menü kennen zu müssen.</li></ul>
+</article>
+<article class="ui-pattern" data-pattern="zoom">
+<header><h3>Übersicht und Detailzoom</h3><a href="https://prezi.com/product/">Prezi ↗</a></header>
+<div class="p-demo"><div class="p-zoom-area"><button type="button" class="p-topic" data-zoom="Alltag">Alltag<small hidden>Kochen · Einkaufen · Termine</small></button><button type="button" class="p-topic" data-zoom="Technik">Technik<small hidden>Handy · WLAN · Fotos</small></button><button type="button" class="p-topic" data-zoom="Texte">Texte<small hidden>Lesen · Verstehen · Antworten</small></button></div><button type="button" class="p-reset" data-zoom-reset disabled>Zur Übersicht</button></div>
+<ul><li>Ein Thema öffnen, vertiefen und zum Gesamtbild zurückkehren.</li></ul>
+</article>
+<article class="ui-pattern" data-pattern="radial">
+<header><h3>Radialmenü</h3><a href="https://docs.blender.org/manual/en/5.0/interface/controls/buttons/menus.html#pie-menus">Blender ↗</a></header>
+<div class="p-demo"><div class="p-radial"><button type="button" class="p-north" data-radial="Öffnen">Öffnen</button><button type="button" class="p-west" data-radial="Kopieren">Kopieren</button><output data-radial-result>Aktion</output><button type="button" class="p-east" data-radial="Teilen">Teilen</button><button type="button" class="p-south" data-radial="Suchen">Suchen</button></div></div>
+<ul><li>Wenige Aktionen um einen Ausgangspunkt anordnen.</li></ul>
+</article>
+<article class="ui-pattern" data-pattern="transcript">
+<header><h3>Text als Schnittfläche</h3><a href="https://www.descript.com/features">Descript ↗</a></header>
+<div class="p-demo"><div class="p-transcript">Hallo, <button type="button" data-cut-word aria-pressed="false" aria-label="ähm entfernen oder wiederherstellen">ähm</button> ich komme morgen.</div><div class="p-timeline" aria-label="Drei Abschnitte des Demo-Clips"><span></span><span data-cut-segment></span><span></span></div><p class="p-help" data-cut-status>„ähm“ antippen: Wort und Clip-Abschnitt entfernen.</p></div>
+<ul><li>Text bearbeiten und dadurch Audio oder Video schneiden.</li></ul>
+</article>
+<article class="ui-pattern" data-pattern="inspector">
+<header><h3>Kontext-Inspector</h3><a href="https://help.penpot.app/user-guide/dev-tools/">Penpot ↗</a></header>
+<div class="p-demo"><div class="p-inspect"><div class="p-shapes"><button type="button" class="p-shape p-square selected" data-shape="Rechteck" data-color="Blau" aria-label="Rechteck auswählen"></button><button type="button" class="p-shape p-circle" data-shape="Kreis" data-color="Grau" aria-label="Kreis auswählen"></button></div><div class="p-properties"><span>Auswahl</span><b data-property-shape>Rechteck</b><span>Farbe</span><b data-property-color>Blau</b></div></div><p class="p-help">Ein Objekt anklicken.</p></div>
+<ul><li>Die Auswahl bestimmt, welche Eigenschaften sichtbar werden.</li></ul>
+</article>
+<article class="ui-pattern" data-pattern="stepper">
+<header><h3>Geführte Einzelschritte</h3><a href="https://help.typeform.com/hc/en-us/articles/38099463383188-How-to-add-multiple-questions-to-a-form-page">Typeform ↗</a></header>
+<div class="p-demo"><div class="p-step-meta"><span data-step-count>1 / 3</span><button type="button" data-step-back disabled>Zurück</button></div><p class="p-step-question" data-step-question></p><div class="p-step-choices" data-step-choices></div></div>
+<ul><li>Ein Anliegen durch wenige nacheinander gestellte Fragen eingrenzen.</li></ul>
+</article>
+<article class="ui-pattern" data-pattern="columns">
+<header><h3>Navigation in Spalten</h3><a href="https://support.apple.com/guide/mac-help/organize-your-files-in-the-finder-mchle9f0a1b2/mac">Finder ↗</a></header>
+<div class="p-demo"><div class="p-columns" data-columns></div><p class="p-help" data-column-path>Ordner auswählen.</p></div>
+<ul><li>Eine Auswahl öffnet rechts die nächste Ebene; der Weg bleibt sichtbar.</li></ul>
+</article>
+</div>
+<p class="secondary">Referenzen für Interaktion. Welche Muster älteren Menschen tatsächlich helfen, bleibt zu testen.</p>
+</section>
+
 <section id="ki-kreativ" class="ki-section">
 <h2>Kreative KI-Interfaces</h2>
 <p class="meta">Recherche: 25.11.2026 · Allgemeine Interaktionsreferenzen</p>
@@ -997,5 +1107,129 @@ ev.forEach(([name, lvl, note]) => {
   const meter = [0,1,2,3].map(i => `<i class="${i < lvl ? 'f' : ''}"></i>`).join('');
   evEl.insertAdjacentHTML('beforeend', `<div class="row ev"><b>${name}</b><span class="meter" role="img" aria-label="Evidenzstufe ${lvl} von 4" title="Evidenzstufe ${lvl} von 4">${meter}</span><div class="note">${note}</div></div>`);
 });
+// Schematic, local-only interaction examples. No external tools or AI calls.
+const patternRoot = document.getElementById('ki-ui-muster');
+const pattern = name => patternRoot.querySelector(`[data-pattern="${name}"]`);
+const nodes = pattern('nodes');
+nodes.querySelector('[data-node-out]').addEventListener('click', event => {
+  nodes.dataset.start = 'true';
+  event.currentTarget.classList.add('selected');
+  nodes.querySelector('[data-node-status]').textContent = 'Jetzt den Eingang links am KI-Knoten antippen.';
+});
+nodes.querySelector('[data-node-in]').addEventListener('click', () => {
+  if (nodes.dataset.start !== 'true') return;
+  nodes.querySelector('[data-node-wire]').classList.add('connected');
+  nodes.querySelector('[data-node-status]').textContent = 'Verbunden: Anliegen → KI → Antwort.';
+});
+const graph = pattern('graph');
+graph.querySelectorAll('[data-note]').forEach(button => button.addEventListener('click', () => {
+  graph.querySelectorAll('[data-note]').forEach(b => b.classList.toggle('selected', b === button));
+  graph.querySelector('[data-note-preview]').textContent = button.dataset.note + ': ' + button.dataset.preview;
+}));
+pattern('canvas').querySelectorAll('.p-card').forEach(card => {
+  let origin;
+  const move = (x,y) => {
+    const board = card.parentElement;
+    card.style.left = Math.max(0, Math.min(x, board.clientWidth-card.offsetWidth)) + 'px';
+    card.style.top = Math.max(0, Math.min(y, board.clientHeight-card.offsetHeight)) + 'px';
+  };
+  card.addEventListener('pointerdown', event => {
+    if (event.button !== 0) return;
+    origin = {x:event.clientX,y:event.clientY,left:card.offsetLeft,top:card.offsetTop};
+    card.setPointerCapture(event.pointerId);
+  });
+  card.addEventListener('pointermove', event => { if (origin) move(origin.left+event.clientX-origin.x,origin.top+event.clientY-origin.y); });
+  ['pointerup','pointercancel','lostpointercapture'].forEach(type => card.addEventListener(type, () => { origin = null; }));
+  card.addEventListener('keydown', event => {
+    const steps = {ArrowLeft:[-5,0],ArrowRight:[5,0],ArrowUp:[0,-5],ArrowDown:[0,5]};
+    if (!steps[event.key]) return;
+    event.preventDefault();
+    move(card.offsetLeft+steps[event.key][0],card.offsetTop+steps[event.key][1]);
+  });
+});
+pattern('blocks').addEventListener('click', event => {
+  const button = event.target.closest('[data-block-up],[data-block-down]');
+  if (!button) return;
+  const row = button.closest('.p-block'), list = row.parentElement;
+  if (button.hasAttribute('data-block-up') && row.previousElementSibling) list.insertBefore(row,row.previousElementSibling);
+  else if (button.hasAttribute('data-block-down') && row.nextElementSibling) list.insertBefore(row.nextElementSibling,row);
+  button.focus({preventScroll:true});
+});
+const records = [{name:'Brief verstehen',state:'Offen'},{name:'Foto finden',state:'Fertig'},{name:'WLAN verbinden',state:'Offen'}];
+const views = pattern('views');
+function showRecords(view){
+  views.querySelectorAll('[data-data-view]').forEach(b => b.setAttribute('aria-pressed',String(b.dataset.dataView===view)));
+  views.querySelector('[data-records]').innerHTML = view === 'table'
+    ? '<table class="p-mini-table"><thead><tr><th>Aufgabe</th><th>Status</th></tr></thead><tbody>'+records.map(r=>`<tr><td>${r.name}</td><td>${r.state}</td></tr>`).join('')+'</tbody></table>'
+    : '<div class="p-board">'+['Offen','Fertig'].map(state=>`<div><b>${state}</b>${records.filter(r=>r.state===state).map(r=>`<span>${r.name}</span>`).join('')}</div>`).join('')+'</div>';
+}
+views.querySelectorAll('[data-data-view]').forEach(b=>b.addEventListener('click',()=>showRecords(b.dataset.dataView)));showRecords('table');
+const commands=pattern('commands'), search=commands.querySelector('[data-command-search]');
+search.addEventListener('input',()=>{
+  let count=0;
+  commands.querySelectorAll('[data-command]').forEach(b=>{b.hidden=!b.dataset.command.toLocaleLowerCase('de').includes(search.value.toLocaleLowerCase('de'));if(!b.hidden)count++;});
+  commands.querySelector('[data-command-status]').textContent=count ? 'Befehl auswählen oder Return drücken.' : 'Kein passender Befehl.';
+});
+commands.querySelectorAll('[data-command]').forEach(b=>b.addEventListener('click',()=>{commands.querySelector('[data-command-status]').textContent='Ausgewählt: '+b.dataset.command;}));
+search.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();commands.querySelector('[data-command]:not([hidden])')?.click();}});
+const zoom=pattern('zoom'),zoomArea=zoom.querySelector('.p-zoom-area');
+zoom.querySelectorAll('[data-zoom]').forEach(b=>b.addEventListener('click',()=>{
+  zoomArea.dataset.focus=b.dataset.zoom;
+  zoom.querySelectorAll('[data-zoom]').forEach(t=>{t.classList.toggle('selected',t===b);t.querySelector('small').hidden=t!==b;});
+  zoom.querySelector('[data-zoom-reset]').disabled=false;
+}));
+zoom.querySelector('[data-zoom-reset]').addEventListener('click',()=>{
+  delete zoomArea.dataset.focus;
+  zoom.querySelectorAll('[data-zoom]').forEach(b=>{b.classList.remove('selected');b.querySelector('small').hidden=true;});
+  zoom.querySelector('[data-zoom-reset]').disabled=true;
+});
+const radial=pattern('radial');
+radial.querySelectorAll('[data-radial]').forEach(b=>b.addEventListener('click',()=>{
+  radial.querySelectorAll('[data-radial]').forEach(t=>t.classList.toggle('selected',t===b));
+  radial.querySelector('[data-radial-result]').textContent=b.dataset.radial;
+}));
+const transcript=pattern('transcript');
+transcript.querySelector('[data-cut-word]').addEventListener('click',event=>{
+  const cut=event.currentTarget.getAttribute('aria-pressed')!=='true';
+  event.currentTarget.setAttribute('aria-pressed',String(cut));
+  transcript.querySelector('[data-cut-segment]').hidden=cut;
+  transcript.querySelector('[data-cut-status]').textContent=cut?'„ähm“ und sein Clip-Abschnitt entfernt. Erneut tippen stellt beides wieder her.':'„ähm“ und Clip-Abschnitt wiederhergestellt.';
+});
+const inspector=pattern('inspector');
+inspector.querySelectorAll('[data-shape]').forEach(b=>b.addEventListener('click',()=>{
+  inspector.querySelectorAll('[data-shape]').forEach(t=>t.classList.toggle('selected',t===b));
+  inspector.querySelector('[data-property-shape]').textContent=b.dataset.shape;
+  inspector.querySelector('[data-property-color]').textContent=b.dataset.color;
+}));
+const stepper=pattern('stepper');let questionIndex=0;const stepAnswers=[];
+const questions=[{q:'Wobei brauchst du Hilfe?',choices:['Handy','Text','Alltag']},{q:'Was möchtest du tun?',choices:['Verstehen','Ändern']},{q:'Wie möchtest du antworten?',choices:['Sprechen','Tippen']}];
+function showQuestion(focusChoice = false){
+  stepper.querySelector('[data-step-count]').textContent=questionIndex<3?`${questionIndex+1} / 3`:'Fertig';
+  stepper.querySelector('[data-step-back]').disabled=questionIndex===0;
+  stepper.querySelector('[data-step-question]').textContent=questionIndex<3?questions[questionIndex].q:stepAnswers.join(' · ');
+  const choices=stepper.querySelector('[data-step-choices]');choices.replaceChildren();
+  (questionIndex<3?questions[questionIndex].choices:['Neu starten']).forEach(label=>{
+    const button=document.createElement('button');button.type='button';button.textContent=label;
+    button.addEventListener('click',()=>{if(questionIndex===3){questionIndex=0;stepAnswers.length=0;}else{stepAnswers[questionIndex]=label;questionIndex++;}showQuestion(true);});choices.append(button);
+  });
+  if (focusChoice) choices.querySelector('button')?.focus({preventScroll:true});
+}
+stepper.querySelector('[data-step-back]').addEventListener('click',()=>{questionIndex=Math.max(0,questionIndex-1);showQuestion(true);});showQuestion();
+const columns=pattern('columns');const fileTree={Projekte:{APE:['Recherche','Notizen'],Portfolio:['Entwürfe','Texte']},Fotos:{Urlaub:['Meer','Berge'],Familie:['Sommer','Winter']},Dokumente:{Studium:['Kurse','Abgaben'],Privat:['Briefe','Rezepte']}};
+let columnRoot='Projekte',columnFolder='APE',columnFile='';
+function showColumns(focusLevel){
+  const host=columns.querySelector('[data-columns]');host.replaceChildren();
+  const arrays=[Object.keys(fileTree),Object.keys(fileTree[columnRoot]),fileTree[columnRoot][columnFolder]], selected=[columnRoot,columnFolder,columnFile];
+  arrays.forEach((items,level)=>{
+    const col=document.createElement('div');items.forEach(label=>{
+      const button=document.createElement('button');button.type='button';button.textContent=label;button.classList.toggle('selected',label===selected[level]);
+      button.addEventListener('click',()=>{if(level===0){columnRoot=label;columnFolder=Object.keys(fileTree[label])[0];columnFile='';}else if(level===1){columnFolder=label;columnFile='';}else columnFile=label;showColumns(Math.min(level+1,2));});col.append(button);
+    });host.append(col);
+  });
+  columns.querySelector('[data-column-path]').textContent=[columnRoot,columnFolder,columnFile].filter(Boolean).join(' › ');
+  if (focusLevel !== undefined) (host.children[focusLevel].querySelector('.selected') || host.children[focusLevel].querySelector('button'))?.focus({preventScroll:true});
+}
+showColumns();
+
 </script>
 </body></html>
