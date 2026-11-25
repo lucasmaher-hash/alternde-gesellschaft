@@ -20,19 +20,28 @@
 html{scroll-padding-top:56px}
 body{margin:0;background:var(--bg);color:var(--text);font:17px/1.5 var(--font);-webkit-font-smoothing:antialiased}
 main{max-width:760px;margin:0 auto;padding:24px 16px 64px}
-nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:.5px solid var(--sep);overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
-nav .inner{max-width:760px;margin:0 auto;padding:10px 16px;display:flex;gap:18px;font-size:15px}
-nav a.active{font-weight:600}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:.5px solid var(--sep)}
+nav .inner{max-width:760px;margin:0 auto;padding:10px 16px;display:flex;gap:12px;font-size:15px}
+nav .toc-group{margin:0;flex:1;min-width:0}
+nav .toc-group>summary{padding:7px 10px;color:var(--text);font-size:15px;font-weight:600;cursor:pointer;border-radius:8px}
+nav .toc-group>summary:hover{background:var(--card)}
+nav .toc-group>summary::marker{color:var(--text2)}
+nav .toc-group:has(a.active)>summary{color:var(--accent)}
+nav .toc-links{display:flex;flex-direction:column;max-height:30vh;overflow-y:auto;padding-top:4px}
+nav a{display:block;padding:6px 10px;border-radius:8px;color:var(--text);line-height:1.35}
+nav a:hover{background:var(--card);text-decoration:none}
+nav a.active{background:var(--card);color:var(--accent);font-weight:600}
+nav a:focus-visible,nav summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 @media (min-width:1100px){
   body{padding-left:220px}
   html{scroll-padding-top:16px}
-  nav{position:fixed;top:0;left:0;bottom:0;width:220px;border-bottom:0;border-right:.5px solid var(--sep);overflow-y:auto;white-space:normal}
-  nav .inner{flex-direction:column;gap:2px;padding:24px 12px;max-width:none;margin:0;font-size:15px}
-  nav .inner::before{content:"Inhalt";font-size:13px;font-weight:600;color:var(--text2);padding:0 10px 8px}
-  nav a{padding:6px 10px;border-radius:8px;color:var(--text)}
-  nav a:hover{background:var(--card);text-decoration:none}
-  nav a.active{background:var(--card);color:var(--accent)}
+  nav{position:fixed;top:0;left:0;bottom:0;width:220px;border-bottom:0;border-right:.5px solid var(--sep);overflow-y:auto}
+  nav .inner{flex-direction:column;gap:14px;padding:24px 12px;max-width:none;margin:0}
+  nav .inner::before{content:"Inhalt";font-size:13px;font-weight:600;color:var(--text2);padding:0 10px}
+  nav .toc-group{flex:initial}
+  nav .toc-links{max-height:none;overflow:visible}
 }
+@media (max-width:1099px){html{scroll-padding-top:calc(30vh + 88px)}}
 h1{font-size:28px;font-weight:700;margin:12px 0 4px;line-height:1.2}
 h2{font-size:22px;font-weight:600;margin:44px 0 6px;line-height:1.3}
 h3{font-size:17px;font-weight:600;margin:0 0 2px}
@@ -151,17 +160,34 @@ h3.cat{margin:28px 0 8px}
 .setback .brand-description{margin-top:6px;color:var(--text2)}
 .setback .setback-result{margin-top:8px}
 .setback .tech-head>.secondary{white-space:nowrap}
+
+/* KI-Assistent: kompakte Recherchepunkte */
+.ki-section{scroll-margin-top:12px}
+.ki-section ul{margin:10px 0;padding-left:22px;max-width:65ch}
+.ki-section li{margin:7px 0}
+.ki-section .long li{margin:8px 0}
+.ki-section .section-meta{margin-bottom:12px}
+.ki-section:first-of-type{border-top:.5px solid var(--sep)}
 </style></head>
 <body>
-<nav><div class="inner">
+<nav aria-label="Inhaltsverzeichnis"><div class="inner">
+<details class="toc-group" open><summary>Recherche</summary><div class="toc-links">
 <a href="#ueberblick">Überblick</a><a href="#finanzierung">Finanzierung</a><a href="#personal">Personal</a><a href="#gemeinschaft">Gemeinschaft</a><a href="#technologie">Technologie</a><a href="#politik">Arbeit im Alter</a><a href="#deutschland">Deutschland</a><a href="#luecken">Erkenntnisse</a><a href="#fazit">Fazit</a>
+</div></details>
+<details class="toc-group" open><summary>KI-Assistent</summary><div class="toc-links">
+<a href="#ki-ziel">Produktziel</a>
+<a href="#ki-angebote">Bestehende Angebote</a>
+<a href="#ki-erkenntnisse">Erkenntnisse</a>
+<a href="#ki-richtungen">Mögliche Richtungen</a>
+<a href="#ki-test">Nächster Test</a>
+</div></details>
 </div></nav>
 <main>
 
 <!-- ================= ÜBERBLICK ================= -->
 <section id="ueberblick">
 <h1>Alternde Gesellschaft: Lösungsansätze weltweit</h1>
-<p class="meta">Recherche: Oktober 2026 · Beispiele im Betrieb, Pilotprojekte und gescheiterte Umsetzungen</p>
+<p class="meta">Recherche: Oktober 2026 · KI-Assistent ergänzt am 25.11.2026</p>
 <p class="lead">Was wird bereits umgesetzt, wer bezahlt es und was bringt es? Im Mittelpunkt stehen konkrete Angebote für Pflege, selbstständiges Wohnen und Teilhabe.</p>
 <div class="group">
 <div class="row"><b>Pflege organisieren:</b> Versicherungen, internationale Anwerbung und selbstorganisierte Pflegeteams.</div>
@@ -584,6 +610,89 @@ h3.cat{margin:28px 0 8px}
 <p>Die Beispiele liefern drei konkrete Richtungen: <b>Pflegekräfte bei einzelnen Aufgaben entlasten, Wohnen und Alltag unterstützen, lokale Hilfe zuverlässig organisieren.</b> Dafür gibt es bereits Produkte und Versorgungsmodelle, an denen sich eine eigene Umsetzung prüfen lässt.</p>
 <p class="secondary">Für jeden ausgewählten Ansatz klären: Wer nutzt ihn? Wer setzt ihn um? Wer zahlt? Und woran lässt sich eine Verbesserung erkennen?</p>
 </section>
+
+<!-- ================= KI-ASSISTENT · 25.11.2026 ================= -->
+<section id="ki-ziel" class="ki-section">
+<h2>KI-Assistent: Produktziel</h2>
+<p class="meta section-meta">Stand: 25.11.2026 · Neue APE-Produktrichtung</p>
+<ul>
+<li><b>Ziel:</b> Älteren Menschen den Zugang zu KI erleichtern.</li>
+<li><b>Medium offen:</b> App, Telefon, Fernseher oder eigener Gegenstand.</li>
+<li><b>Erste Ansätze:</b> konkrete Beispiele, sichtbare Kategorien, präsente Spracheingabe.</li>
+</ul>
+<p class="secondary">Produktkategorie beschlossen. Funktionen und Medium noch nicht festgelegt.</p>
+</section>
+
+<section id="ki-angebote" class="ki-section">
+<h2>Bestehende Angebote</h2>
+<p class="secondary">Anbieter- und Studienquellen geprüft; Produkte nicht selbst getestet.</p>
+<div class="card">
+<h3>Apps und Bildschirmoberflächen</h3>
+<ul>
+<li><b><a href="https://handyleicht.com/">Handyleicht:</a></b> Technikhilfe mit Beispielen, Sprache, Foto und Vorlesen. APK/Web-App angeboten. Direkter Wettbewerber.</li>
+<li><b><a href="https://digibeg.de/">digibeg:</a></b> Briefe fotografieren, verstehen und nächste Schritte klären. Web-App zum Testen angeboten.</li>
+<li><b><a href="https://helloelsy.com/de">Elsy:</a></b> Sprachbegleiter mit Erinnerungen und Listen. <a href="https://apps.apple.com/de/app/elsy-ki-f%C3%BCr-%C3%A4ltere-menschen/id6762581831">Im deutschen App Store gelistet.</a></li>
+<li><b><a href="https://aincare.de/">aincare:</a></b> Vereinfachte KI mit großem Mikrofonknopf. Aktuell Testanmeldung.</li>
+</ul>
+</div>
+<div class="card">
+<h3>Andere Medien</h3>
+<ul>
+<li><b><a href="https://klaudi.app/">Klaudi:</a></b> Geplante KI-Gespräche am vorhandenen Telefon. Deutschsprachig angeboten.</li>
+<li><b><a href="https://elliq.com/pages/faqs">ElliQ:</a></b> Tischgerät mit Sprache, Bildschirm und eigenen Gesprächsimpulsen. USA, Englisch.</li>
+<li><b><a href="https://onscreeninc.com/pages/features">JoyTV:</a></b> KI am Fernseher mit einfacher Fernbedienung. Kann auch TV-Kanäle einstellen. US-Angebot.</li>
+<li><b><a href="https://navelrobotics.com/en/navel-the-new-empathy-robot-for-good-care/">Navel:</a></b> Sozialroboter für Pflegeeinrichtungen. Als Vorserie angeboten; <a href="https://www.brk.de/aktuell/presse/meldung/fokus-auf-empathie-brk-pflegeheim-setzt-sozial-interaktiven-roboter-navel-ein.html">BRK-Einsatz dokumentiert.</a></li>
+</ul>
+</div>
+<details><summary>Weitere Vergleichsbeispiele</summary><div class="long"><ul>
+<li><b><a href="https://support.google.com/gemini/answer/15274899?hl=de">Gemini Live:</a></b> Bereits Sprache, Kamera und Bildschirmfreigabe. Wichtiger Vergleichsmaßstab.</li>
+<li><b><a href="https://www.bemyeyes.com/bme-app/">Be My Eyes:</a></b> Bildbezogene KI-Hilfe plus menschliche Unterstützung für sehbehinderte Menschen.</li>
+<li><b><a href="https://lumalife.de/produkt/">Luma Life:</a></b> Sprachbegleiter speziell für Menschen mit Demenz. Eigene Zielgruppe.</li>
+<li><b><a href="https://sentai.co.uk/">Sentai:</a></b> Sprachgerät mit Gesprächen und Erinnerungen. UK-Angebot; Deutsch nicht bestätigt.</li>
+<li><b><a href="https://gb.shop.hmd.com/intouch">inTouch / HMD:</a></b> KI-Anrufe am Telefon, auch mit Senioren-Klapphandy. Deutsch nicht bestätigt.</li>
+<li><b><a href="https://komp.family/en/nokkelfunksjoner/">Komp:</a></b> Bildschirm mit einem Drehknopf. Referenz für einfache Bedienung; keine generative KI ausgewiesen.</li>
+</ul></div></details>
+</section>
+
+<section id="ki-erkenntnisse" class="ki-section">
+<h2>Was wir daraus lernen</h2>
+<ul>
+<li><b>Schon vorhanden:</b> Große Tasten, Sprache und Beispiele allein unterscheiden uns kaum.</li>
+<li><b>Einstieg bleibt eine Hürde:</b> Möglichkeiten und Bedienung werden nicht immer erkannt. <a href="https://doi.org/10.1080/10447318.2025.2476710">Nutzerstudie 2025</a></li>
+<li><b>Sprache ergänzen:</b> Schritte sichtbar lassen, wiederholen und korrigieren können.</li>
+<li><b>Fähigkeiten unterscheiden sich:</b> Alter allein erklärt weder Tippfähigkeit noch Technikroutine.</li>
+<li><b>Marktlücke offen:</b> Bessere selbstständige Problemlösung muss im Vergleich gezeigt werden.</li>
+</ul>
+<details><summary>Studien und Grenzen</summary><div class="long"><ul>
+<li><b><a href="https://doi.org/10.1080/10447318.2025.2476710">Enam et al., 2025:</a></b> 20 ältere Erwachsene; teils Schwierigkeiten beim Finden von Eingabe und Senden. Die meisten konnten tippen und lesen. Kleine, homogene US-Stichprobe; Volltext nur teilweise zugänglich.</li>
+<li><b><a href="https://arxiv.org/html/2506.06225v1">Litti, 2025:</a></b> 12 Personen ab 75; neue Anwendungen entdeckt. Keine signifikante Verbesserung der KI-Kompetenz im kurzen Versuch.</li>
+<li><b><a href="https://doi.org/10.1145/3544548.3581447">Yu et al., 2023:</a></b> Sprachbasierte Technikhilfe mit 15 älteren Personen. Assistent von Menschen simuliert; kein Nachweis autonomer KI-Zuverlässigkeit.</li>
+<li><b>Grenze:</b> Keine dieser Arbeiten belegt, dass Kategorien oder Sprache für alle älteren Menschen besser sind.</li>
+</ul></div></details>
+</section>
+
+<section id="ki-richtungen" class="ki-section">
+<h2>Mögliche Richtungen für APE</h2>
+<p class="secondary">Gestaltungshypothesen, keine bestätigten Marktlücken.</p>
+<ul>
+<li><b>Technikbegleiter:</b> „Wo muss ich drücken?“ Ein Schritt, selbst ausführen, Rückmeldung. Haken: Bildschirmkontext muss stimmen.</li>
+<li><b>KI entdecken:</b> Persönliche Aufgabenbeispiele statt leerer Eingabe. Haken: Beispiele müssen zum eigenen Alltag passen.</li>
+<li><b>Alltag erklären:</b> Etwas zeigen und verständlich erklären lassen. Haken: Falsche Antworten können Folgen haben.</li>
+<li><b>Greifbarer Zugang:</b> Sprechknopf oder Hörer mit bleibender Anzeige. Haken: zusätzliches Gerät und Einrichtung.</li>
+</ul>
+<p><b>Vorschlag für APE:</b> Zuerst Technikbegleitung und KI-Entdeckung prüfen; das Medium danach wählen.</p>
+</section>
+
+<section id="ki-test" class="ki-section">
+<h2>Nächster Test</h2>
+<ul>
+<li><b>8–12 Personen:</b> unterschiedliche Technikroutine und Fähigkeiten. Explorativ, nicht repräsentativ.</li>
+<li><b>Einstieg vergleichen:</b> freie Eingabe gegen konkrete Beispiele; gleiche Aufgaben, Antwortqualität und Sprachwahl.</li>
+<li><b>Beobachten:</b> selbstständiger Start, gelungene Aufgabe, Hilfebedarf und Fehlerkorrektur.</li>
+<li><b>Medium separat prüfen:</b> Bildschirmknopf gegen physischen Taster, falls sinnvoll.</li>
+</ul>
+</section>
+
 </main>
 <div id="tip" role="tooltip"></div>
 
@@ -702,9 +811,20 @@ const secs = navLinks.map(a => document.querySelector(a.getAttribute('href'))).f
 function markActive(){
   let cur = secs[0];
   for (const sec of secs) if (sec.getBoundingClientRect().top < innerHeight * 0.3) cur = sec;
-  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur.id));
+  navLinks.forEach(a => {
+    const active = a.getAttribute('href') === '#' + cur.id;
+    a.classList.toggle('active', active);
+    if (active) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+  });
 }
 addEventListener('scroll', markActive, {passive:true}); markActive();
+function revealHashGroup(){
+  const link = navLinks.find(a => a.hash === location.hash);
+  const group = link && link.closest('.toc-group');
+  if (group) group.open = true;
+  markActive();
+}
+addEventListener('hashchange', revealHashGroup); revealHashGroup();
 
 // Evidence ladder
 const ev = [
