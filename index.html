@@ -17,31 +17,40 @@
   --green:#30D158; --orange:#FF9F0A; --red:#FF453A;
 }}
 *{box-sizing:border-box}
-html{scroll-padding-top:56px}
+html{scroll-padding-top:16px}
 body{margin:0;background:var(--bg);color:var(--text);font:17px/1.5 var(--font);-webkit-font-smoothing:antialiased}
 main{max-width:760px;margin:0 auto;padding:24px 16px 64px}
-nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:.5px solid var(--sep)}
-nav .inner{max-width:760px;margin:0 auto;padding:10px 16px;display:flex;gap:12px;font-size:15px}
-nav .toc-group{margin:0;flex:1;min-width:0}
-nav .toc-group>summary{padding:7px 10px;color:var(--text);font-size:15px;font-weight:600;cursor:pointer;border-radius:8px}
+nav{position:fixed;inset:0;z-index:30;background:var(--bg);overflow-y:auto;overscroll-behavior:contain;display:none}
+nav[data-open]{display:block}
+nav .inner{max-width:760px;margin:0 auto;padding:16px 20px 48px;display:flex;flex-direction:column;gap:18px;font-size:17px}
+.mobile-nav-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 10px 8px;font-size:22px;font-weight:600}
+.menu-toggle,.menu-close{font:inherit;color:var(--text);background:var(--card);border:.5px solid var(--sep);border-radius:10px;min-height:44px;padding:8px 14px;cursor:pointer}
+.menu-toggle{position:fixed;top:max(12px,env(safe-area-inset-top));right:16px;z-index:10;font-size:15px;font-weight:600}
+.menu-close{font-size:15px;font-weight:500}
+nav .toc-group{margin:0;min-width:0}
+nav .toc-group>summary{padding:10px;color:var(--text);font-size:17px;font-weight:600;cursor:pointer;border-radius:8px}
 nav .toc-group>summary:hover{background:var(--card)}
 nav .toc-group>summary::marker{color:var(--text2)}
 nav .toc-group:has(a.active)>summary{color:var(--accent)}
-nav .toc-links{display:flex;flex-direction:column;max-height:30vh;overflow-y:auto;padding-top:4px}
-nav a{display:block;padding:6px 10px;border-radius:8px;color:var(--text);line-height:1.35}
+nav .toc-links{display:flex;flex-direction:column;padding-top:4px}
+nav a{display:block;padding:10px 16px;border-radius:8px;color:var(--text);line-height:1.4;min-height:44px}
 nav a:hover{background:var(--card);text-decoration:none}
 nav a.active{background:var(--card);color:var(--accent);font-weight:600}
-nav a:focus-visible,nav summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+nav a:focus-visible,nav summary:focus-visible,.menu-toggle:focus-visible,.menu-close:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:1099px){
+  main{padding-top:72px}
+  body.mobile-menu-open{overflow:hidden}
+}
 @media (min-width:1100px){
   body{padding-left:220px}
   html{scroll-padding-top:16px}
-  nav{position:fixed;top:0;left:0;bottom:0;width:220px;border-bottom:0;border-right:.5px solid var(--sep);overflow-y:auto}
-  nav .inner{flex-direction:column;gap:14px;padding:24px 12px;max-width:none;margin:0}
+  nav{display:block;right:auto;width:220px;border-right:.5px solid var(--sep)}
+  nav .inner{gap:14px;padding:24px 12px;max-width:none;margin:0;font-size:15px}
   nav .inner::before{content:"Inhalt";font-size:13px;font-weight:600;color:var(--text2);padding:0 10px}
-  nav .toc-group{flex:initial}
-  nav .toc-links{max-height:none;overflow:visible}
+  nav .toc-group>summary{padding:7px 10px;font-size:15px}
+  nav a{padding:6px 10px;min-height:0;line-height:1.35}
+  .menu-toggle,.mobile-nav-head{display:none}
 }
-@media (max-width:1099px){html{scroll-padding-top:calc(30vh + 88px)}}
 h1{font-size:28px;font-weight:700;margin:12px 0 4px;line-height:1.2}
 h2{font-size:22px;font-weight:600;margin:44px 0 6px;line-height:1.3}
 h3{font-size:17px;font-weight:600;margin:0 0 2px}
@@ -168,9 +177,27 @@ h3.cat{margin:28px 0 8px}
 .ki-section .long li{margin:8px 0}
 .ki-section .section-meta{margin-bottom:12px}
 .ki-section:first-of-type{border-top:.5px solid var(--sep)}
+
+[hidden]{display:none!important}
+.topic-view>section:first-child h1{margin-top:12px}
+.mechanism-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0 22px}
+.mechanism-card{background:var(--card);border-radius:12px;padding:16px;min-width:0}
+.mechanism-card h3{font-size:17px;margin-bottom:8px}
+.mechanism-card ul{font-size:15px;margin:8px 0 0;padding-left:18px}
+.mechanism-card li{margin:0}
+.mechanism-svg{display:block;width:100%;height:auto;color:var(--text);font-family:var(--font)}
+.diagram-accent{stroke:var(--accent)}
+.diagram-fill{fill:var(--accent);stroke:var(--accent)}
+.diagram-highlight{fill:var(--accent);fill-opacity:.15;stroke:none}
+.diagram-muted{stroke:var(--grey2)}
+.entry-visual{max-width:440px;margin:22px 0}
+.entry-visual figcaption{margin-top:10px}
+@media(max-width:620px){.mechanism-grid{grid-template-columns:1fr}.mechanism-card .mechanism-svg{max-width:320px;margin:auto}}
 </style></head>
 <body>
-<nav aria-label="Inhaltsverzeichnis"><div class="inner">
+<button type="button" class="menu-toggle" id="menu-toggle" aria-controls="site-navigation" aria-expanded="false" aria-label="Inhaltsverzeichnis öffnen">Inhalt</button>
+<nav id="site-navigation" aria-label="Inhaltsverzeichnis"><div class="inner">
+<div class="mobile-nav-head"><span>Inhalt</span><button type="button" class="menu-close" id="menu-close">Schließen</button></div>
 <details class="toc-group" open><summary>Recherche</summary><div class="toc-links">
 <a href="#ueberblick">Überblick</a><a href="#finanzierung">Finanzierung</a><a href="#personal">Personal</a><a href="#gemeinschaft">Gemeinschaft</a><a href="#technologie">Technologie</a><a href="#politik">Arbeit im Alter</a><a href="#deutschland">Deutschland</a><a href="#luecken">Erkenntnisse</a><a href="#fazit">Fazit</a>
 </div></details>
@@ -179,10 +206,12 @@ h3.cat{margin:28px 0 8px}
 <a href="#ki-angebote">Bestehende Angebote</a>
 <a href="#ki-erkenntnisse">Erkenntnisse</a>
 <a href="#ki-richtungen">Mögliche Richtungen</a>
+<a href="#ki-kreativ">Kreative KI-Interfaces</a>
 <a href="#ki-test">Nächster Test</a>
 </div></details>
 </div></nav>
 <main>
+<article class="topic-view" data-topic="research">
 
 <!-- ================= ÜBERBLICK ================= -->
 <section id="ueberblick">
@@ -611,15 +640,18 @@ h3.cat{margin:28px 0 8px}
 <p class="secondary">Für jeden ausgewählten Ansatz klären: Wer nutzt ihn? Wer setzt ihn um? Wer zahlt? Und woran lässt sich eine Verbesserung erkennen?</p>
 </section>
 
+</article>
+<article class="topic-view" data-topic="ki" hidden>
 <!-- ================= KI-ASSISTENT · 25.11.2026 ================= -->
 <section id="ki-ziel" class="ki-section">
-<h2>KI-Assistent: Produktziel</h2>
+<h1>KI-Assistent für ältere Menschen</h1>
 <p class="meta section-meta">Stand: 25.11.2026 · Neue APE-Produktrichtung</p>
 <ul>
 <li><b>Ziel:</b> Älteren Menschen den Zugang zu KI erleichtern.</li>
 <li><b>Medium offen:</b> App, Telefon, Fernseher oder eigener Gegenstand.</li>
 <li><b>Erste Ansätze:</b> konkrete Beispiele, sichtbare Kategorien, präsente Spracheingabe.</li>
 </ul>
+<figure class="entry-visual"><svg class="mechanism-svg" viewBox="0 0 300 136" role="img" aria-label="Drei mögliche Eingaben: sprechen, ein Bild zeigen oder eine Aufgabe auswählen." xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="14" width="76" height="102" rx="10"/><rect x="120" y="14" width="76" height="102" rx="10"/><rect x="222" y="14" width="60" height="102" rx="10"/><rect x="47" y="34" width="18" height="34" rx="9" class="diagram-accent"/><path d="M39 57v5a17 17 0 0 0 34 0v-5M56 79v10m-10 0h20"/><rect x="133" y="35" width="50" height="45" rx="5"/><circle cx="168" cy="46" r="4"/><path d="m136 73 13-19 13 18 8-10 10 16" class="diagram-accent"/><path d="M234 40h35M234 56h35M234 72h35"/><circle cx="234" cy="88" r="4" class="diagram-accent"/><text x="27" y="133" fill="currentColor" stroke="none" font-size="12" >Sprechen</text><text x="139" y="133" fill="currentColor" stroke="none" font-size="12" >Zeigen</text><text x="229" y="133" fill="currentColor" stroke="none" font-size="12" >Wählen</text></g></svg><figcaption class="src">Mögliche Eingaben; das Medium bleibt offen.</figcaption></figure>
 <p class="secondary">Produktkategorie beschlossen. Funktionen und Medium noch nicht festgelegt.</p>
 </section>
 
@@ -683,6 +715,32 @@ h3.cat{margin:28px 0 8px}
 <p><b>Vorschlag für APE:</b> Zuerst Technikbegleitung und KI-Entdeckung prüfen; das Medium danach wählen.</p>
 </section>
 
+<section id="ki-kreativ" class="ki-section">
+<h2>Kreative KI-Interfaces</h2>
+<p class="meta">Recherche: 25.11.2026 · Allgemeine Interaktionsreferenzen</p>
+<p class="secondary">Schematische Illustrationen der Bedienideen, keine Originaloberflächen. Funktionen aus Anbieterquellen; nicht selbst getestet.</p>
+<div class="mechanism-grid"><div class="mechanism-card"><h3><a href="https://docs.flora.ai/editor/fauna">FLORA / FAUNA</a></h3><svg class="mechanism-svg" viewBox="0 0 300 136" role="img" aria-label="Drei Medienknoten liefern gemeinsam den Kontext für ein Ergebnis." xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="20" y="18" width="72" height="40" rx="8"/><rect x="20" y="78" width="72" height="40" rx="8"/><rect x="202" y="46" width="78" height="44" rx="8" class="diagram-accent"/><path d="M92 38h44q14 0 14 14v16h52M92 98h44q14 0 14-14V68"/><circle cx="150" cy="68" r="5" class="diagram-fill"/><path d="m192 62 10 6-10 6"/><text x="38" y="43" fill="currentColor" stroke="none" font-size="12" >Text</text><text x="39" y="103" fill="currentColor" stroke="none" font-size="12" >Bild</text><text x="213" y="73" fill="currentColor" stroke="none" font-size="12" >Ergebnis</text></g></svg><ul><li><b>Verbinden und markieren:</b> Medien liefern Kontext; passende Regler und Editoren steuern das Ergebnis.</li></ul></div>
+<div class="mechanism-card"><h3><a href="https://www.krea.ai/blog/realtime-edit">Krea Realtime</a></h3><svg class="mechanism-svg" viewBox="0 0 300 136" role="img" aria-label="Eine grobe gezeichnete Form wird zum gestalteten Bild." xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="20" width="104" height="96" rx="8"/><rect x="178" y="20" width="104" height="96" rx="8"/><path d="M59 94V72m-15 0 15-34 17 34ZM48 60h26"/><path d="M136 68h28m-7-6 7 6-7 6" class="diagram-accent"/><path d="M225 100V79m-22-12q-16-6-3-18-2-19 17-15 11-18 23-2 24-4 24 15 20 13 1 23-4 16-22 8-20 14-40-11Z" class="diagram-accent"/><text x="35" y="11" fill="currentColor" stroke="none" font-size="12" >Skizze</text><text x="191" y="11" fill="currentColor" stroke="none" font-size="12" >KI-Ergebnis</text></g></svg><ul><li><b>Malen statt beschreiben:</b> Eine Skizze verändert das KI-Bild direkt.</li></ul></div>
+<div class="mechanism-card"><h3><a href="https://help.napkin.ai/en/articles/15923738-getting-started-with-napkin-ai">Napkin AI</a></h3><svg class="mechanism-svg" viewBox="0 0 300 136" role="img" aria-label="Markierter Text wird in verschiedene Diagrammformen übersetzt." xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="29" width="104" height="76" rx="8"/><path d="M30 47h70M30 61h55M30 75h70M30 89h45"/><rect x="25" y="54" width="77" height="14" rx="3" class="diagram-highlight"/><path d="M132 68h26m-7-6 7 6-7 6"/><rect x="180" y="26" width="96" height="84" rx="8"/><circle cx="228" cy="48" r="8" class="diagram-accent"/><path d="M228 56v15m-25 0h50m-50 0v9m50-9v9"/><rect x="191" y="81" width="24" height="16" rx="4"/><rect x="241" y="81" width="24" height="16" rx="4"/></g></svg><ul><li><b>Markieren und auswählen:</b> Text wird zu wählbaren, bearbeitbaren Diagrammen.</li></ul></div>
+<div class="mechanism-card"><h3><a href="https://support.google.com/gemininotebook/answer/16212283?hl=en">Gemini Notebook</a></h3><svg class="mechanism-svg" viewBox="0 0 300 136" role="img" aria-label="Ein Quellenthema verzweigt in anklickbare Unterthemen und eine Frage." xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="49" width="78" height="38" rx="8"/><path d="M94 68h32V32h38M126 68v36h38"/><rect x="164" y="14" width="115" height="36" rx="8"/><path d="M172 88h99q8 0 8 8v19h-24l-12 10v-10h-71q-8 0-8-8V96q0-8 8-8Z" class="diagram-accent"/><text x="28" y="73" fill="currentColor" stroke="none" font-size="12" >Quellen</text><text x="181" y="37" fill="currentColor" stroke="none" font-size="12" >Thema wählen</text><text x="177" y="105" fill="currentColor" stroke="none" font-size="12" >Nachfragen</text></g></svg><ul><li><b>Themen antippen:</b> Quellen als Themenkarte erkunden. Auch Audio mit Nachfragen; interaktiv derzeit Englisch.</li></ul></div>
+<div class="mechanism-card"><h3><a href="https://www.granola.ai/blog/get-the-best-from-granola">Granola</a></h3><svg class="mechanism-svg" viewBox="0 0 300 136" role="img" aria-label="Kurze eigene Notizen bleiben schwarz; KI ergänzt weitere Zeilen in Grau." xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="58" y="12" width="184" height="112" rx="10"/><path d="M78 34h71M78 49h119"/><path d="M78 64h143M78 79h125M78 94h138M78 109h93" class="diagram-muted"/><circle cx="219" cy="34" r="8" class="diagram-accent"/><path d="m224 40 7 8" class="diagram-accent"/></g></svg><ul><li><b>Stichworte genügen:</b> Eigene Notizen steuern KI-Ergänzungen; beides bleibt sichtbar unterscheidbar.</li></ul></div>
+<div class="mechanism-card"><h3><a href="https://docs.wisprflow.ai/articles/4678293671-Context-Awareness">Wispr Flow</a></h3><svg class="mechanism-svg" viewBox="0 0 300 136" role="img" aria-label="Gesprochener Text landet direkt in einem vorhandenen Eingabefeld." xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="33" y="32" width="22" height="44" rx="11" class="diagram-accent"/><path d="M23 61v4a21 21 0 0 0 42 0v-4M44 86v17m-12 0h24M80 68h28m-7-6 7 6-7 6"/><rect x="127" y="28" width="156" height="80" rx="8"/><path d="M127 46h156M140 38h1m7 0h1m7 0h1M141 62h104M141 77h121M141 92h66"/><path d="M216 86v12" class="diagram-accent"/></g></svg><ul><li><b>Am Ort sprechen:</b> KI schreibt direkt im vorhandenen Textfeld und berücksichtigt den Kontext.</li></ul></div></div>
+<h3 class="sub">Was APE übernehmen könnte</h3>
+<ul>
+<li><b>Zeigen:</b> Auf ein Problem tippen, statt es vollständig zu beschreiben.</li>
+<li><b>Wählen:</b> Wenige passende Möglichkeiten anbieten, statt Promptwissen vorauszusetzen.</li>
+<li><b>Direkt reagieren:</b> Ergebnisse sichtbar, veränderbar und rückgängig machbar halten.</li>
+</ul>
+<p class="secondary">Gestaltungshypothesen. Ein Vorteil für ältere Menschen ist noch nicht nachgewiesen.</p>
+<details><summary>Weitere Mechanismen und Grenzen</summary><div class="long"><ul>
+<li><b><a href="https://support.elicit.com/en/articles/14759154-systematic-reviews-in-elicit">Elicit:</a></b> Fragen werden Vergleichsspalten; Zellklick zeigt Belege. Für Forschung gestaltet.</li>
+<li><b><a href="https://computer.tldraw.com/">tldraw computer:</a></b> Verbundene Komponenten werden ausführbare Abläufe. Experiment; Startzugang nicht vollständig geprüft.</li>
+<li><b><a href="https://support.google.com/gemininotebook/answer/16212820?hl=en">Gemini Notebook, früher NotebookLM:</a></b> Audio zuhören, per „Join“ nachfragen, weiterhören. Interaktiv nur Englisch.</li>
+<li><b>Komplexität:</b> Freie Canvas-Flächen können selbst eine Lernhürde sein. Die Mechanik übertragen, nicht die ganze Oberfläche.</li>
+<li><b>Historisch:</b> <a href="https://support.google.com/labs/answer/16689296?hl=en">Mixboard</a> und <a href="https://developers.google.com/opal/faq">Opal</a> sind eingestellt.</li>
+</ul></div></details>
+</section>
+
 <section id="ki-test" class="ki-section">
 <h2>Nächster Test</h2>
 <ul>
@@ -693,6 +751,7 @@ h3.cat{margin:28px 0 8px}
 </ul>
 </section>
 
+</article>
 </main>
 <div id="tip" role="tooltip"></div>
 
@@ -805,12 +864,73 @@ bars('c-barriers', [
   ['Stigma', 18, '18 %', false]
 ]);
 
+// Research and AI are separate views, selected by their chapter links.
+const topicViews = [...document.querySelectorAll('.topic-view')];
+function selectTopic(hash){
+  const target = hash && document.getElementById(hash.slice(1));
+  const topic = target && target.closest('.topic-view');
+  const selected = topic || topicViews[0];
+  topicViews.forEach(view => { view.hidden = view !== selected; });
+  document.title = selected.dataset.topic === 'ki' ? 'KI-Assistent · APE' : 'Alternde Gesellschaft · Recherche';
+}
+selectTopic(location.hash);
+
+// Full-screen mobile contents; desktop keeps the left navigation.
+const navigation = document.getElementById('site-navigation');
+const menuToggle = document.getElementById('menu-toggle');
+const menuClose = document.getElementById('menu-close');
+const mobileViewport = matchMedia('(max-width:1099px)');
+function closeMenu(restoreFocus = true){
+  navigation.removeAttribute('data-open');
+  navigation.removeAttribute('role');
+  navigation.removeAttribute('aria-modal');
+  menuToggle.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('mobile-menu-open');
+  document.querySelector('main').inert = false;
+  if (restoreFocus && mobileViewport.matches) menuToggle.focus();
+}
+menuToggle.addEventListener('click', () => {
+  navigation.querySelectorAll('.toc-group').forEach(group => { group.open = true; });
+  navigation.setAttribute('data-open', '');
+  navigation.setAttribute('role', 'dialog');
+  navigation.setAttribute('aria-modal', 'true');
+  menuToggle.setAttribute('aria-expanded', 'true');
+  document.body.classList.add('mobile-menu-open');
+  document.querySelector('main').inert = true;
+  menuClose.focus();
+});
+menuClose.addEventListener('click', () => closeMenu());
+navigation.addEventListener('click', event => {
+  const link = event.target.closest('a[href^="#"]');
+  if (link) {
+    selectTopic(link.hash);
+    if (mobileViewport.matches) {
+      closeMenu(false);
+      const target = document.getElementById(link.hash.slice(1));
+      if (target) { target.tabIndex = -1; target.focus({preventScroll:true}); }
+    }
+  }
+});
+navigation.addEventListener('keydown', event => {
+  if (!navigation.hasAttribute('data-open')) return;
+  if (event.key === 'Escape') { event.preventDefault(); closeMenu(); }
+  if (event.key === 'Tab') {
+    const controls = [...navigation.querySelectorAll('button,summary,a')].filter(el => el.getClientRects().length);
+    const first = controls[0], last = controls[controls.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  }
+});
+mobileViewport.addEventListener('change', () => closeMenu(false));
+
 // Active section in navigation
 const navLinks = [...document.querySelectorAll('nav a')];
 const secs = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
 function markActive(){
-  let cur = secs[0];
-  for (const sec of secs) if (sec.getBoundingClientRect().top < innerHeight * 0.3) cur = sec;
+  const visibleSecs = secs.filter(sec => !sec.closest('.topic-view').hidden);
+  let cur = visibleSecs[0];
+  if (!cur) return;
+  for (const sec of visibleSecs) if (sec.getBoundingClientRect().top < innerHeight * 0.3) cur = sec;
   navLinks.forEach(a => {
     const active = a.getAttribute('href') === '#' + cur.id;
     a.classList.toggle('active', active);
@@ -819,9 +939,12 @@ function markActive(){
 }
 addEventListener('scroll', markActive, {passive:true}); markActive();
 function revealHashGroup(){
+  selectTopic(location.hash);
   const link = navLinks.find(a => a.hash === location.hash);
   const group = link && link.closest('.toc-group');
   if (group) group.open = true;
+  const anchor = location.hash && document.getElementById(location.hash.slice(1));
+  if (anchor) anchor.scrollIntoView({block:'start'});
   markActive();
 }
 addEventListener('hashchange', revealHashGroup); revealHashGroup();
